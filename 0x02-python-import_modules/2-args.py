@@ -10,4 +10,4 @@ if __name__ == '__main__':
 
     for n in range(len(argv)):
         if n != 0:
-            print("{}: {} ".format(n, argv[n]))
+            print("{}: {}".format(n, argv[n]))

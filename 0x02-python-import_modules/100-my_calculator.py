@@ -9,7 +9,7 @@ if __name__ == '__main__':
     a = int(argv[1])
     b = int(argv[3])
 
-    if argv[2] not in ['+', '-', '*', '/']:
+    if argv[2] not in '+-*/':
         print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
     elif argv[2] == '+':
@@ -19,4 +19,5 @@ if __name__ == '__main__':
     elif argv[2] == '*':
         print("{} {} {} = {}".format(argv[1], argv[2], argv[3], mul(a, b)))
     elif argv[2] == '/':
-        print("{} {} {} = {}".format(argv[1], argv[2], argv[3], div(a, b)))
+        if b != 0:
+            print("{} {} {} = {}".format(argv[1], argv[2], argv[3], div(a, b)))

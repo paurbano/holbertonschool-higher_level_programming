@@ -6,9 +6,9 @@ def print_matrix_integer(matrix=[[]]):
         m = 0
         for j in i:
             if m < len(i)-1:
-                print(matrix[n][m], end=" ")
+                print("{:d}".format(matrix[n][m]), end=" ")
             else:
-                print(matrix[n][m], end="")
+                print("{:d}".format(matrix[n][m]), end="")
             m += 1
         print()
         n += 1

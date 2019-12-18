@@ -25,7 +25,7 @@ int is_palindrome(listint_t **head)
 		cont1++;
 	}
 	cont1--;
-	for ( ; cont0 < (cont1 / 2); cont0++, cont1--)
+	for ( ; cont0 < cont1 ; cont0++, cont1--)
 	{
 		if (array[cont0] != array[cont1])
 			return (0);

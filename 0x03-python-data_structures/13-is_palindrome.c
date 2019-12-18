@@ -11,7 +11,10 @@ int is_palindrome(listint_t **head)
 	int array[4096], cont0 = 0, cont1 = 0;
 	listint_t *temp = *head;
 
-	if ((*head)->next == NULL || head == NULL)
+	if (head == NULL)
+		return (0);
+
+	if ((*head)->next == NULL || *head == NULL)
 		return (1);
 
 	while (temp != NULL)

@@ -9,14 +9,15 @@
 int is_palindrome(listint_t **head)
 {
 	int array[4096], cont0 = 0, cont1 = 0;
-	listint_t *temp = *head;
+	listint_t *temp;
 
 	if (head == NULL)
 		return (0);
 
-	if ((*head)->next == NULL || *head == NULL)
+	if ((*head)->next == NULL || !*head)
 		return (1);
 
+	temp = *head;
 	while (temp != NULL)
 	{
 		array[cont1] = temp->n;

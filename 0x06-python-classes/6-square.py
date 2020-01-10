@@ -47,16 +47,15 @@ class Square:
     def my_print(self):
         """prints in stdout the square with the character #"""
         size = self.__size
-        px = self.__position[0]
-        py = self.__position[1]
+        position = self.__position
 
         if self.size == 0:
             print()
             return
 
-        print("\n" * py, end="")
+        print("\n" * position[1], end="")
 
         for i in range(size):
             """here the _ """
-            print(" " * px, end="")
+            print(" " * position[0], end="")
             print("#" * size)

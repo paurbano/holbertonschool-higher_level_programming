@@ -50,8 +50,9 @@ class Square:
         px = self.__position[0]
         py = self.__position[1]
 
-        if self.__size == 0:
+        if self.size == 0:
             print()
+            return
 
         print("\n" * py, end="")
 

@@ -2,13 +2,24 @@
 class Rectangle():
     '''Class that define a rectangle'''
     def __init__(self, width=0, heigth=0):
-        """Init method"""
-        self.width = width
-        self.heigth = heigth
+        """Init method
+            @width : width of rectangle
+        """
+        if type(width) != int:
+            raise TypeError("width must be an integer")
+        if width < 0:
+            raise ValueError("width must be >= 0")
+        if type(heigth) != int:
+            raise TypeError("height must be an integer")
+        if heigth < 0:
+            raise ValueError("height must be >= 0")
+        
+        self.__heigth = heigth
+        self.__width = width
 
     @property
     def width(self):
-        """Getter for wigth"""
+        """Getter for width"""
         return self.__width
 
     @width.setter

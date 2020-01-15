@@ -5,10 +5,10 @@ class Rectangle():
     number_of_instances = 0
     print_symbol = '#'
 
-    def __init__(self, width=0, heigth=0):
+    def __init__(self, width=0, height=0):
         """Init method"""
         self.width = width
-        self.heigth = heigth
+        self.height = height
         Rectangle.number_of_instances += 1
 
     @property
@@ -27,38 +27,38 @@ class Rectangle():
             self.__width = value
 
     @property
-    def heigth(self):
-        """Getter for heigth"""
-        return self.__heigth
+    def height(self):
+        """Getter for height"""
+        return self.__height
 
-    @heigth.setter
-    def heigth(self, value):
-        """Setter for heigth"""
+    @height.setter
+    def height(self, value):
+        """Setter for height"""
         if type(value) != int:
             raise TypeError("height must be an integer")
         elif value < 0:
             raise ValueError("height must be >= 0")
         else:
-            self.__heigth = value
+            self.__height = value
 
     def area(self):
         """returns rectangle area."""
-        return self.__width * self.__heigth
+        return self.__width * self.__height
 
     def perimeter(self):
         """Returns rectangle perimeter """
-        if self.__width == 0 or self.__heigth == 0:
+        if self.__width == 0 or self.__height == 0:
             return 0
 
-        return (self.__width*2) + (self.__heigth*2)
+        return (self.__width*2) + (self.__height*2)
 
     def __str__(self):
         """ print() __str__ method """
         rec = ""
-        if self.__width == 0 or self.heigth == 0:
+        if self.__width == 0 or self.height == 0:
             return rec
 
-        for i in range(self.__heigth):
+        for i in range(self.__height):
             rec += (str(self.print_symbol) * self.__width + '\n')
 
         rec = rec.rstrip()
@@ -66,7 +66,7 @@ class Rectangle():
 
     def __repr__(self):
         """Return class representation"""
-        return 'Rectangle({}, {})'.format(self.__width, self.__heigth)
+        return 'Rectangle({}, {})'.format(self.__width, self.__height)
 
     def __del__(self):
         """method destructor"""

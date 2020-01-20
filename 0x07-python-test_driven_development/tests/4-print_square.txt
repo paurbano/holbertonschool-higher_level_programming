@@ -1,10 +1,10 @@
-the ``3-say_my_name`` module
+the ``4-print_square`` module
 ======================
 
-Using ``3-say_my_name``
+Using ``4-print_square``
 -------------------
 
-First import ``say_my_name`` from the ``3-say_my_name`` module:
+First import ``print_square`` from the ``4-print_square`` module:
 
 >>> print_square = __import__('4-print_square').print_square
 
@@ -21,7 +21,7 @@ test cases:
 Traceback (most recent call last):
 ValueError: size must be >= 0
 
->>> print_square(-1.525)
+>>> print_square(-1.5)
 Traceback (most recent call last):
 ValueError: size must be >= 0
 

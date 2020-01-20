@@ -49,7 +49,6 @@ Adding two letters:
 Adding number and letters:
     >>> add_integer(1, 'b')
     Traceback (most recent call last)
-    ...
     TypeError: b must be an integer
 
 None passed:
@@ -57,9 +56,3 @@ None passed:
     Traceback (most recent call last):
     ...
     TypeError: a must be an integer
-
-Adding big number:
-    >>> add_integer(1e100)
-    Traceback (most recent call last):
-    ...
-    OverflowError: a too large

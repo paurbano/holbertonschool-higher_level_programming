@@ -48,7 +48,7 @@ Adding two letters:
 
 Adding number and letters:
     >>> add_integer(1, 'b')
-    Traceback (most recent call last)
+    Traceback (most recent call last):
     TypeError: b must be an integer
 
 None passed:

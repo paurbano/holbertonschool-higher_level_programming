@@ -1,106 +1,127 @@
-0x0A-python-inheritance/1-my_list.txt module
-====================
+The Module 7-base_geometry 
+-------------------------------------------------------------------------------------------------------------
 
-Import the class:
->>> MyList = __import__("1-my_list").MyList
+Using integer_validator
+-------------------------------------------------------------------------------------------------------------
 
-Check for module docstring:
->>> m = __import__("1-my_list").__doc__
->>> len(m) > 1
-True
+This is a text file in reStructured Text format. step 1: import integer_validator from the 7-base_geometry module:
 
-Check docstring:
->>> c = __import__("1-my_list").MyList.__doc__
->>> len(c) > 1
-True
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
-Checking docstring:
->>> f = __import__("1-my_list").MyList.print_sorted.__doc__
->>> len(f) > 1
-True
+TEST1
+-------------------------------------------------------------------------------------------------------------
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("my_int", 12)
 
-Test case:
->>> my_list = MyList()
 
->>> my_list.append(1)
+TEST2
+-------------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("width", 89)
 
->>> my_list.append(4)
 
->>> my_list.append(2)
+TEST3
+-------------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("", 50)
 
->>> my_list.append(3)
-
->>> my_list.append(5)
-
->>> print(my_list)
-[1, 4, 2, 3, 5]
-
->>> my_list.print_sorted()
-[1, 2, 3, 4, 5]
-
->>> print(my_list)
-[1, 4, 2, 3, 5]
-
-empty object:
->>> obj1 = MyList()
-
->>> print(obj1)
-[]
-
->>> obj1.print_sorted()
-[]
-
-negatives:
->>> obj2 = MyList()
-
->>> obj2.append(-1)
-
->>> obj2.append(0)
-
->>> obj2.append(-233)
-
->>> obj2.append(-9)
-
->>> print(obj2)
-[-1, 0, -233, -9]
-
->>> obj2.print_sorted()
-[-233, -9, -1, 0]
-
-NULL object:
->>> obj3 = MyList()
-
->>> obj3.append(NULL)
+TEST4
+-------------------------------------------------------------------------------------------------------------
+>>> bg.area()
 Traceback (most recent call last):
 ...
-NameError: name 'NULL' is not defined
+Exception: area() is not implemented
 
->>> print(obj3)
-[]
-
->>> obj3.print_sorted()
-[]
-
-NaN object:
->>> obj4 = MyList()
-
->>> obj4.append(NaN)
+TEST5
+------------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("name", "John")
 Traceback (most recent call last):
 ...
-NameError: name 'NaN' is not defined
+TypeError: name must be an integer
 
->>> print(obj4)
-[]
->>> obj4.print_sorted()
-[]
 
-None object:
->>> obj5 = MyList()
+TEST6
+------------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+...
+ValueError: age must be greater than 0
 
->>> obj5.append(None)
+TEST7
+------------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("distance", -4)
+Traceback (most recent call last):
+...
+ValueError: distance must be greater than 0
 
->>> print(obj5)
-[None]
+TEST8
+------------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("float", 3.5)
+Traceback (most recent call last):
+...
+TypeError: float must be an integer
 
->>> obj5.print_sorted()
-[None]
+TEST9
+------------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("infinity", float('inf'))
+Traceback (most recent call last):
+...
+TypeError: infinity must be an integer
+
+
+TEST10
+----------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("nan", float('nan'))
+Traceback (most recent call last):
+...
+TypeError: nan must be an integer
+
+
+TEST11
+-----------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("list", [1, 2, 3])
+Traceback (most recent call last):
+...
+TypeError: list must be an integer
+
+TEST12
+-----------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("tuple", (1, 2, 3))
+Traceback (most recent call last):
+...
+TypeError: tuple must be an integer
+
+TEST13
+-----------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("bool", True)
+Traceback (most recent call last):
+...
+TypeError: bool must be an integer
+
+TEST14
+-----------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("set", {1, 2})
+Traceback (most recent call last):
+...
+TypeError: set must be an integer
+
+
+TEST15
+----------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("none", None)
+Traceback (most recent call last):
+...
+TypeError: none must be an integer
+
+
+TEST16
+----------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator()
+Traceback (most recent call last):
+...
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+TEST17
+----------------------------------------------------------------------------------------------------------
+>>> bg.integer_validator("arg")
+Traceback (most recent call last):
+...
+TypeError: integer_validator() missing 1 required positional argument: 'value'

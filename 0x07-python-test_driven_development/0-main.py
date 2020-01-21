@@ -6,6 +6,7 @@ print(add_integer(1, 2))
 print(add_integer(100, -2))
 print(add_integer(2))
 print(add_integer(100.3, -2))
+print(add_integer(True, False))
 try:
     print(add_integer("a", "b"))
 except Exception as e:

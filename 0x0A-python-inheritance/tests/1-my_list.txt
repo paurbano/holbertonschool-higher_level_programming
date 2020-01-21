@@ -6,6 +6,17 @@ Importing the class
 
 Test cases:
 >>> my_list = MyList()
+>>> my_list.print_sorted()
+[]
+
+>>> a_list = MyList('a')
+>>> a_list.print_sorted()
+['a']
+
+>>> str_list = MyList('string')
+>>> str_list.print_sorted()
+['g', 'i', 'n', 'r', 's', 't']
+
 
 >>> my_list.append(1)
 
@@ -42,3 +53,24 @@ Negatives:
 
 >>> obj2.print_sorted()
 [-200, -7, 1, 10]
+
+>>> float_list = MyList(3.5)
+Traceback (most recent call last):
+...
+TypeError: 'float' object is not iterable
+
+>>> inf_list = MyList(float('inf'))
+Traceback (most recent call last):
+...
+TypeError: 'float' object is not iterable
+
+>>> nan_list = MyList(float('nan'))
+Traceback (most recent call last):
+...
+TypeError: 'float' object is not iterable
+
+>>> my_list.append('a')
+>>> my_list.print_sorted()
+Traceback (most recent call last):
+...
+TypeError: '<' not supported between instances of 'str' and 'int'

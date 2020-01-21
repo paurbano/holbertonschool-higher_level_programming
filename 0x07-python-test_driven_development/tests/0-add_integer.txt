@@ -10,7 +10,7 @@ First import ``add_integer`` from the ``0-add_integer`` module:
 
 Test cases:
 
->>> add_integer(5, 8)
+    >>> add_integer(5, 8)
     13
 
     >>> add_integer(2, 6)
@@ -39,13 +39,13 @@ Testing Negative Numbers:
 Testing Floats:
 
     >>> add_integer(1.7, 5.3)
-    7
+    6
 
     >>> add_integer(5.2, 9.5)
     14
 
     >>> add_integer(15.2, 5.8)
-    21
+    20
 
 Testing for Negative Floats:
 
@@ -53,10 +53,10 @@ Testing for Negative Floats:
     -9
 
     >>> add_integer(-5.9, 8.5)
-    -14
+    3
 
     >>> add_integer(-23.7, -13.3)
-    -37
+    -36
 
 Testing for one Argument:
 

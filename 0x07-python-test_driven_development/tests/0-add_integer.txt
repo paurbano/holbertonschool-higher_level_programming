@@ -37,13 +37,11 @@ Decimal and integers
 No Parameters:
     >>> add_integer()
     Traceback (most recent call last):
-    ...
     TypeError: add_integer() missing 1 required positional argument: 'a'
 
 Adding two letters:
     >>> add_integer('a','b')
     Traceback (most recent call last):
-    ...
     TypeError: a must be an integer
 
 Adding number and letters:
@@ -54,5 +52,4 @@ Adding number and letters:
 None passed:
     >>> add_integer(None)
     Traceback (most recent call last):
-    ...
     TypeError: a must be an integer

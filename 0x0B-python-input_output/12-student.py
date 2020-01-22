@@ -15,5 +15,8 @@ class Student:
         if not attrs:
             return self.__dict__
 
-        new_list = [k for k in attrs if hasattr(self, k)]
-        return {k: getattr(self, k) for k in new_list}
+        my_attrs = {}
+        for key, val in self.__dict__.items():
+            if key in attrs:
+                my_attrs[key] = val
+        return my_attrs

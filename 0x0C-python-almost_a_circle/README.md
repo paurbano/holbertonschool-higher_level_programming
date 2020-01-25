@@ -20,10 +20,10 @@ You will also learn about:
 * JSON
 
 ## 0. If it's not tested it doesn't work
-    All your files, classes and methods must be unit tested and be PEP 8 validated.
+All your files, classes and methods must be unit tested and be PEP 8 validated.
 
-    * Directory: 0x0C-python-almost_a_circle    
-    * file : tests/
+* Directory: 0x0C-python-almost_a_circle    
+* file : tests/
 
 ## 1. Base class
     Write the first class Base:

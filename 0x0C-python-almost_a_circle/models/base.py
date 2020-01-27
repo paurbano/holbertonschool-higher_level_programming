@@ -63,14 +63,11 @@ class Base:
         instances = []
         try:
             with open(filename, 'r') as f:
-                text = f.read()
+                text = cls.from_json_string(f.read())
 
-            text = cls.from_json_string(text)
-            for item in text:
-                if type(item) == dict:
-                    instances.append(cls.create(**item))
-                else:
-                    instances.append(item)
+            for obj in text:
+                instances.append(cls.create(**obj))
+
         except FileNotFoundError:
             instances = []
 

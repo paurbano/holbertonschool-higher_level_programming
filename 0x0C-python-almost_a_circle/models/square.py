@@ -1,0 +1,50 @@
+#!/usr/bin/python3
+""" Module Square"""
+from models.rectangle import Rectangle
+
+
+class Square(Rectangle):
+    """class Square that defines a square."""
+
+    def __init__(self, size, x=0, y=0, id=None):
+        """__init__ method.
+        Args:
+            size (int): size of square.
+            position (tuple): position of square.
+        """
+        super().__init__(width=size, height=size, x=x, y=y, id=id)
+
+    def __str__(self):
+        """Return class representation """
+        txt = '[Square] ({}) {}/{} - {}'
+        txt = txt.format(self.id, self.x, self.y, self.width)
+        return txt
+
+    @property
+    def size(self):
+        return self.width
+
+    @size.setter
+    def size(self, value):
+        if type(value) != int:
+            raise TypeError("width must be an integer")
+        elif value < 0:
+            raise ValueError("width must be >= 0")
+        else:
+            self.width = value
+            self.height = value
+
+    def update(self, *args, **kwargs):
+        if not args:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+        else:
+            params = ('id', 'size', 'x', 'y')
+            index = 0
+            for arg in args:
+                setattr(self, params[index], arg)
+                index += 1
+
+    def to_dictionary(self):
+        return {'x': self.x, 'y':  self.y, 'id': self.id,
+                'size': self.width}

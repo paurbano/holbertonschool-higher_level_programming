@@ -44,7 +44,6 @@ class Base:
             return empty_list
         else:
             return json.loads(json_string)
-            # return json.JSONDecoder(json_string)
 
     @classmethod
     def create(cls, **dictionary):
@@ -66,9 +65,7 @@ class Base:
             text = []
             with open(filename, 'r') as f:
                 text = cls.from_json_string(f.read())
-                # print(text)
                 for obj in text:
-                    # print(type(obj))
                     instances.append(cls.create(**obj))
         except FileNotFoundError:
             instances = []

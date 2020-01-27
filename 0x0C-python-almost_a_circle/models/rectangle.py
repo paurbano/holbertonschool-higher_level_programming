@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-""" Class Rectangle"""
+""" Module Rectangle"""
 from models.base import Base
 
 
 class Rectangle(Base):
-    """constructor """
+    """ Class Rectangle """
     def __init__(self, width, height, x=0, y=0, id=None):
         super().__init__(id)
         self.integer_validator("width", width)
@@ -29,10 +29,12 @@ class Rectangle(Base):
 
     @property
     def height(self):
+        """ getter heigth """
         return self.__height
 
     @height.setter
     def height(self, height):
+        """ setter height """
         if type(height) != int:
             raise TypeError("height must be an integer")
         elif height < 0:
@@ -42,10 +44,12 @@ class Rectangle(Base):
 
     @property
     def width(self):
+        """ getter width """
         return self.__width
 
     @width.setter
     def width(self, width):
+        """ setter width """
         if type(width) != int:
             raise TypeError("width must be an integer")
         elif width < 0:
@@ -55,10 +59,12 @@ class Rectangle(Base):
 
     @property
     def x(self):
+        """ getter x """
         return self.__x
 
     @x.setter
     def x(self, x):
+        """ setter x"""
         if type(x) != int:
             raise TypeError("x must be an integer")
         elif x < 0:
@@ -68,10 +74,12 @@ class Rectangle(Base):
 
     @property
     def y(self):
+        """ getter y """
         return self.__y
 
     @y.setter
     def y(self, y):
+        """ setter y """
         if type(y) != int:
             raise TypeError("y must be an integer")
         elif y < 0:
@@ -107,6 +115,7 @@ class Rectangle(Base):
         return txt
 
     def update(self, *args, **kwargs):
+        """ Udpdate attributes """
         if args:
             params = ('id', 'width', 'height', 'x', 'y')
             index = 0
@@ -118,5 +127,6 @@ class Rectangle(Base):
                 setattr(self, key, value)
 
     def to_dictionary(self):
+        """ returns the dictionary representation of a Rectangle """
         return {'x': self.x, 'y':  self.y, 'id': self.id,
                 'height': self.height, 'width':  self.width}

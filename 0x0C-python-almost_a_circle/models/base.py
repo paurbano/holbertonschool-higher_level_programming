@@ -30,7 +30,8 @@ class Base:
         rep_list = []
         for item in list_objs:
             repre = cls.to_dictionary(item)
-            rep_list.append(cls.to_json_string(repre))
+            # rep_list.append(cls.to_json_string(repre))
+            rep_list.append(repre)
 
         with open(namefile, "w", encoding="UTF-8") as f:
             json.dump(rep_list, f)
@@ -39,11 +40,11 @@ class Base:
     def from_json_string(json_string):
         """returns the list of the JSON string representation json_string """
         empty_list = []
-        if json_string is None or not json_string:
+        if json_string is None:
             return empty_list
         else:
-            # json.loads(json_string)
-            json.JSONDecoder(json_string)
+            return json.loads(json_string)
+            # return json.JSONDecoder(json_string)
 
     @classmethod
     def create(cls, **dictionary):
@@ -62,12 +63,13 @@ class Base:
         filename = cls.__name__ + ".json"
         instances = []
         try:
+            text = []
             with open(filename, 'r') as f:
                 text = cls.from_json_string(f.read())
-
-            for obj in text:
-                instances.append(cls.create(**obj))
-
+                # print(text)
+                for obj in text:
+                    # print(type(obj))
+                    instances.append(cls.create(**obj))
         except FileNotFoundError:
             instances = []
 

@@ -36,7 +36,8 @@ class Base:
             rep_list.append(repre)
 
         with open(namefile, "w", encoding="UTF-8") as f:
-            json.dump(rep_list, f)
+            # json.dump(rep_list, f)
+            f.write(cls.to_json_string(rep_list))
 
     @staticmethod
     def from_json_string(json_string):

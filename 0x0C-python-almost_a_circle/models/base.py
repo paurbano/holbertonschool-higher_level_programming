@@ -28,12 +28,11 @@ class Base:
         """ write JSON representation of an object to text file"""
         namefile = cls.__name__ + ".json"
         rep_list = []
-        if list_objs is None:
-            return rep_list
-        for item in list_objs:
-            repre = cls.to_dictionary(item)
-            # rep_list.append(cls.to_json_string(repre))
-            rep_list.append(repre)
+        if list_objs is not None and list_objs != []:
+            for item in list_objs:
+                repre = cls.to_dictionary(item)
+                # rep_list.append(cls.to_json_string(repre))
+                rep_list.append(repre)
 
         with open(namefile, "w", encoding="UTF-8") as f:
             # json.dump(rep_list, f)

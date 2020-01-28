@@ -27,17 +27,12 @@ class TestBase(unittest.TestCase):
         b3 = Base()
         b4 = Base(12)
         b5 = Base()
-        o6 = Base(["list", 4, 2.5])
-        o7 = Base(None)
 
         self.assertEqual(b1.id, 1)
         self.assertEqual(b2.id, 2)
         self.assertEqual(b3.id, 3)
         self.assertEqual(b4.id, 12)
         self.assertEqual(b5.id, 4)
-        self.assertEqual(o6.id, ["list", 4, 2.5])
-        self.assertEqual(o7.id, 2)
-        self.assertEqual(Base._Base__nb_objects, 2)
 
     def test_to_json_string(self):
         """Testing to_json_string()

@@ -25,20 +25,21 @@ class TestRectangle(unittest.TestCase):
         """Test instantiation
         """
 
-        o1 = Rectangle(3, 2)
-        o2 = Rectangle(8, 7, 0, 0, 12)
-        with self.assertRaises(TypeError):
+        r1 = Rectangle(10, 2)
+        r2 = Rectangle(2, 10)
+        r3 = Rectangle(10, 2, 0, 0, 12)
+
+        """ with self.assertRaises(TypeError):
             o3 = Rectangle("string")
             o4 = Rectangle(None)
             o5 = Rectangle(float('inf'))
             o6 = Rectangle(9.5, 9.3)
             o7 = Rectangle(-8, 9)
-            o8 = Rectangle()
+            o8 = Rectangle() """
 
-        self.assertEqual(o1.id, 1)
-        self.assertEqual(o1._Base__nb_objects, 1)
-        self.assertEqual(o2.id, 12)
-        self.assertEqual(o2._Base__nb_objects, 1)
+        self.assertEqual(r1.id, 1)
+        self.assertEqual(r2.id, 2)
+        self.assertEqual(r3.id, 12)
 
     def test_area(self):
         """Testing area()

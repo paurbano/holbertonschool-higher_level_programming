@@ -14,113 +14,187 @@ class TestRectangle(unittest.TestCase):
     """Testing Rectangle
     """
 
-    def tearDown(self):
-        """Tears down obj count
+    def test_init_with_parameter(self):
         """
-
-        Base._Base__nb_objects = 0
-        self.assertEqual(Base._Base__nb_objects, 0)
-
-    def test_instance(self):
-        """Test instantiation
+        Check if all that obj affects the attribute id
+        of the parent class base
         """
 
         r1 = Rectangle(10, 2)
         r2 = Rectangle(2, 10)
-        r3 = Rectangle(10, 2, 0, 0, 12)
+        r3 = Rectangle(10, 2, 0, 0)
+        self.assertEqual(r3.id, 3)
+        Base._Base__nb_objects = 0
 
-        """ with self.assertRaises(TypeError):
-            o3 = Rectangle("string")
-            o4 = Rectangle(None)
-            o5 = Rectangle(float('inf'))
-            o6 = Rectangle(9.5, 9.3)
-            o7 = Rectangle(-8, 9)
-            o8 = Rectangle() """
-
-        self.assertEqual(r1.id, 1)
-        self.assertEqual(r2.id, 2)
-        self.assertEqual(r3.id, 12)
-
-    def test_area(self):
-        """Testing area()
+    def test_init_rect_with_parameter_id(self):
+        """
+        Check if the last parameter id is working on Base
         """
 
-        o1 = Rectangle(3, 2)
-        o2 = Rectangle(8, 7, 0, 0, 12)
-        o3 = Rectangle(999, 999)
+        r1 = Rectangle(1, 2, 3, 4, 10)
+        self.assertEqual(r1.id, 10)
+        Base._Base__nb_objects = 0
 
-        self.assertEqual(o1.area(), 6)
-        self.assertEqual(o2.area(), 56)
-        self.assertEqual(o3.area(), 998001)
-
-    def test_display(self):
-        """Testing display()
+    def test_is_instance(self):
+        """
+        Check if the obj is instance of Rectangle and
+        subclass of Base
         """
 
-        o1 = Rectangle(3, 2)
-        with patch('sys.stdout', new=StringIO()) as fakeOutput:
-            o1.display()
-            self.assertEqual(fakeOutput.getvalue(), '###\n###\n')
+        r1 = Rectangle(2, 10)
+        self.assertIsInstance(r1, (Rectangle, Base))
+        Base._Base__nb_objects = 0
 
-        o2 = Rectangle(4, 5, 0, 1, 12)
-        with patch('sys.stdout', new=StringIO()) as fakeOutput:
-            o2.display()
-            self.assertEqual(fakeOutput.getvalue(),
-                             '\n####\n####\n####\n####\n####\n')
-
-    def test_str(self):
-        """Testing __str__()
+    def test_attributes_setter_validation(self):
+        """
+        Check if the attributes are validated in the setter
         """
 
-        o1 = Rectangle(3, 2)
-        o2 = Rectangle(8, 7, 0, 0, 12)
-        o3 = Rectangle(3, 2, 1)
-        o4 = Rectangle(3, 2, id="holberton")
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            Rectangle(1, "1")
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            r = Rectangle(10, 2)
+            r.width = -10
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            r = Rectangle(10, 2)
+            r.x = {}
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+            Rectangle(10, 2, 3, -1)
+        Base._Base__nb_objects = 0
 
-        self.assertEqual(o1.__str__(), '[Rectangle] (1) 0/0 - 3/2')
-        self.assertEqual(o2.__str__(), '[Rectangle] (12) 0/0 - 8/7')
-        self.assertEqual(o3.__str__(), '[Rectangle] (2) 1/0 - 3/2')
-        self.assertEqual(o4.__str__(), '[Rectangle] (holberton) 0/0 - 3/2')
-
-    def test_update(self):
-        """Testing update()
+    def test_area_value(self):
+        """
+        Check the area of the Rectangle
         """
 
-        o1 = Rectangle(3, 2)
-        o2 = Rectangle(8, 7, 0, 0, 12)
-        o3 = Rectangle(3, 2, 1)
-        o4 = Rectangle(3, 2, id="holberton")
-        o5 = Rectangle(3, 2, id="holberton")
+        r1 = Rectangle(3, 2)
+        self.assertEqual(r1.area(), 6)
 
-        o1.update(5, 7)
-        self.assertEqual(o1.__str__(), '[Rectangle] (5) 0/0 - 7/2')
-        with self.assertRaises(ValueError):
-            o2.update(**{'id': 1337, 'x': -1})
-            o3.update("stringid", None, None)
-        o4.update(None)
-        self.assertEqual(o4.__str__(), '[Rectangle] (None) 0/0 - 3/2')
-        o5.update(-5)
-        self.assertEqual(o5.__str__(), '[Rectangle] (-5) 0/0 - 3/2')
+        r2 = Rectangle(2, 10)
+        self.assertEqual(r2.area(), 20)
 
-    def test_to_dictionary(self):
-        """Testing to_dictionary()
+        r3 = Rectangle(8, 7, 0, 0, 12)
+        self.assertEqual(r3.area(), 56)
+        Base._Base__nb_objects = 0
+
+    def test_display_rectangle_4_6(self):
+        """
+        Check the display method
         """
 
-        o1 = Rectangle(3, 2)
-        o2 = Rectangle(8, 7, 0, 0, 12)
-        o3 = Rectangle(3, 2, 1)
-        o4 = Rectangle(3, 2, id="holberton")
+        capture = io.StringIO()
+        sys.stdout = capture
+        r1 = Rectangle(4, 6)
+        r1.display()
+        out = capture.getvalue()
+        sys.stdout = sys.__stdout__
+        display = "####\n####\n####\n####\n####\n####\n"
+        self.assertEqual(display, out)
+        Base._Base__nb_objects = 0
 
-        d1 = {'id': 1, 'width': 3, 'height': 2, 'x': 0, 'y': 0}
-        d2 = {'id': 12, 'width': 8, 'height': 7, 'x': 0, 'y': 0}
-        d3 = {'id': 2, 'width': 3, 'height': 2, 'x': 1, 'y': 0}
-        d4 = {'id': 'holberton', 'width': 3, 'height': 2, 'x': 0, 'y': 0}
+    def test_display_rectangle_2_2(self):
+        """
+        Check the display method
+        """
 
-        self.assertDictEqual(o1.to_dictionary(), d1)
-        self.assertDictEqual(o2.to_dictionary(), d2)
-        self.assertDictEqual(o3.to_dictionary(), d3)
-        self.assertDictEqual(o4.to_dictionary(), d4)
+        capture = io.StringIO()
+        sys.stdout = capture
+        r1 = Rectangle(2, 2)
+        r1.display()
+        out = capture.getvalue()
+        sys.stdout = sys.__stdout__
+        display = "##\n##\n"
+        self.assertEqual(display, out)
+        Base._Base__nb_objects = 0
 
+    def test_display_rectangle_2_3_2_2(self):
+        """
+        Check the display method
+        """
 
-if __name__ == '__main__':
-    unittest.main()
+        capture = io.StringIO()
+        sys.stdout = capture
+        r1 = Rectangle(2, 3, 2, 2)
+        r1.display()
+        out = capture.getvalue()
+        sys.stdout = sys.__stdout__
+        display = "\n\n  ##\n  ##\n  ##\n"
+        self.assertEqual(display, out)
+        Base._Base__nb_objects = 0
+
+    def test_display_rectangle_3_2_1_0(self):
+        """
+        Check the display method
+        """
+
+        capture = io.StringIO()
+        sys.stdout = capture
+        r1 = Rectangle(3, 2, 1, 0)
+        r1.display()
+        out = capture.getvalue()
+        sys.stdout = sys.__stdout__
+        display = " ###\n ###\n"
+        self.assertEqual(display, out)
+        Base._Base__nb_objects = 0
+
+    def test_rectangle_str_1(self):
+        """
+        Check the __str__ method
+        """
+
+        capture = io.StringIO()
+        sys.stdout = capture
+        r1 = Rectangle(4, 6, 2, 1, 12)
+        print(r1)
+        out = capture.getvalue()
+        sys.stdout = sys.__stdout__
+        display = "[Rectangle] (12) 2/1 - 4/6\n"
+        self.assertEqual(display, out)
+        Base._Base__nb_objects = 0
+
+    def test_rectangle_str_2(self):
+        """
+        Check the __str__ method
+        """
+
+        capture = io.StringIO()
+        sys.stdout = capture
+        r1 = Rectangle(5, 5, 1)
+        print(r1)
+        out = capture.getvalue()
+        sys.stdout = sys.__stdout__
+        display = "[Rectangle] (1) 1/0 - 5/5\n"
+        self.assertEqual(display, out)
+        Base._Base__nb_objects = 0
+
+    def test_rectangle_update_args_1(self):
+        """
+        Check the update method with args
+        """
+
+        capture = io.StringIO()
+        sys.stdout = capture
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89)
+        print(r1)
+        out = capture.getvalue()
+        sys.stdout = sys.__stdout__
+        display = "[Rectangle] (89) 10/10 - 10/10\n"
+        self.assertEqual(display, out)
+        Base._Base__nb_objects = 0
+
+    def test_rectangle_update_kwargs_1(self):
+        """
+        Check the update method with kwargs
+        """
+
+        capture = io.StringIO()
+        sys.stdout = capture
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(height=1)
+        print(r1)
+        out = capture.getvalue()
+        sys.stdout = sys.__stdout__
+        display = "[Rectangle] (1) 10/10 - 10/1\n"
+        self.assertEqual(display, out)
+        Base._Base__nb_objects = 0

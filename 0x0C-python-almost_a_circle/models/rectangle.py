@@ -31,10 +31,9 @@ class Rectangle(Base):
         """ setter height """
         if type(height) != int:
             raise TypeError("height must be an integer")
-        elif height < 0:
+        if height < 0:
             raise ValueError("height must be > 0")
-        else:
-            self.__height = height
+        self.__height = height
 
     @property
     def width(self):
@@ -46,10 +45,9 @@ class Rectangle(Base):
         """ setter width """
         if type(width) != int:
             raise TypeError("width must be an integer")
-        elif width < 0:
+        if width < 0:
             raise ValueError("width must be > 0")
-        else:
-            self.__width = width
+        self.__width = width
 
     @property
     def x(self):
@@ -61,10 +59,9 @@ class Rectangle(Base):
         """ setter x"""
         if type(x) != int:
             raise TypeError("x must be an integer")
-        elif x < 0:
+        if x < 0:
             raise ValueError("x must be >= 0")
-        else:
-            self.__x = x
+        self.__x = x
 
     @property
     def y(self):
@@ -76,10 +73,9 @@ class Rectangle(Base):
         """ setter y """
         if type(y) != int:
             raise TypeError("y must be an integer")
-        elif y < 0:
+        if y < 0:
             raise ValueError("y must be >= 0")
-        else:
-            self.__y = y
+        self.__y = y
 
     def area(self):
         """
@@ -97,10 +93,7 @@ class Rectangle(Base):
             print()
 
         for i in range(self.__height):
-            rec += (' ' * self.__x + '#' * self.__width + '\n')
-
-        rec = rec.rstrip()
-        print(rec)
+            print((' ' * self.__x) + ('#' * self.__width))
 
     def __str__(self):
         """Return class representation """

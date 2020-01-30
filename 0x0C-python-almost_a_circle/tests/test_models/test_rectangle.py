@@ -1,204 +1,79 @@
 #!/usr/bin/python3
-"""Unittest for class Rectangle
-"""
-import unittest
-import os
-from io import StringIO
-from unittest.mock import patch
+"""Unittest for base.py"""
+
 from models.base import Base
 from models.rectangle import Rectangle
-from models.square import Square
+import unittest
+import sys
+from io import StringIO
 
 
 class TestRectangle(unittest.TestCase):
-    """Testing Rectangle
-    """
+    """unnittest"""
 
-    def test_init_with_parameter(self):
-        """
-        Check if all that obj affects the attribute id
-        of the parent class base
-        """
+    def setUp(self):
+        """ Put stdout and set rectangles"""
+        self.old_stdout = sys.stdout
+        sys.stdout = self.mystdout = StringIO()
+        self.g1 = Rectangle(10, 2)
+        self.g2 = Rectangle(2, 10)
+        self.g3 = Rectangle(10, 2, 0, 0, 12)
 
-        r1 = Rectangle(10, 2)
-        r2 = Rectangle(2, 10)
-        r3 = Rectangle(10, 2, 0, 0)
-        self.assertEqual(r3.id, 3)
-        Base._Base__nb_objects = 0
+    def tearDown(self):
+        sys.stdout = self.old_stdout
 
-    def test_init_rect_with_parameter_id(self):
-        """
-        Check if the last parameter id is working on Base
-        """
+    def test_excep(self):
+        with self.assertRaises(TypeError):
+            Rectangle(10, "2")
 
-        r1 = Rectangle(1, 2, 3, 4, 10)
-        self.assertEqual(r1.id, 10)
-        Base._Base__nb_objects = 0
+    def test_A(self):
+        """Test id"""
+        self.assertEqual(self.g1.id, 10)
+        self.assertEqual(self.g2.id, 11)
+        self.assertEqual(self.g3.id, 12)
+        """ Test width"""
+        self.assertEqual(self.g1.width, 10)
+        self.assertEqual(self.g2.width, 2)
+        self.assertEqual(self.g3.width, 10)
+        """ Test height"""
+        self.assertEqual(self.g1.height, 2)
+        self.assertEqual(self.g2.height, 10)
+        self.assertEqual(self.g3.height, 2)
+        """ Test x"""
+        self.assertEqual(self.g1.x, 0)
+        self.assertEqual(self.g2.x, 0)
+        self.assertEqual(self.g3.x, 0)
+        """ Test y"""
+        self.assertEqual(self.g1.y, 0)
+        self.assertEqual(self.g2.y, 0)
+        self.assertEqual(self.g3.y, 0)
+        """ Test area"""
+        self.assertEqual(self.g1.area(), 20)
+        self.assertEqual(self.g2.area(), 20)
+        self.assertEqual(self.g3.area(), 20)
 
-    def test_is_instance(self):
-        """
-        Check if the obj is instance of Rectangle and
-        subclass of Base
-        """
+    def test_B_someExecp(self):
+        with self.assertRaises(ValueError):
+            r1 = Rectangle(10, 2)
+            r1.width = - 10
+            self.g1.width = - 10
+            self.g2.width = - 10
+            self.g3.width = - 10
 
-        r1 = Rectangle(2, 10)
-        self.assertIsInstance(r1, (Rectangle, Base))
-        Base._Base__nb_objects = 0
+        with self.assertRaises(ValueError):
+            r2 = Rectangle(10, 2)
+            r2.height = - 10
+            self.g1.height = - 10
+            self.g2.height = - 10
+            self.g3.height = - 10
 
-    def test_attributes_setter_validation(self):
-        """
-        Check if the attributes are validated in the setter
-        """
-
-        with self.assertRaisesRegex(TypeError, "height must be an integer"):
-            Rectangle(1, "1")
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
-            r = Rectangle(10, 2)
-            r.width = -10
-        with self.assertRaisesRegex(TypeError, "x must be an integer"):
-            r = Rectangle(10, 2)
-            r.x = {}
-        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
-            Rectangle(10, 2, 3, -1)
-        Base._Base__nb_objects = 0
-
-    def test_area_value(self):
-        """
-        Check the area of the Rectangle
-        """
-
-        r1 = Rectangle(3, 2)
-        self.assertEqual(r1.area(), 6)
-
-        r2 = Rectangle(2, 10)
-        self.assertEqual(r2.area(), 20)
-
-        r3 = Rectangle(8, 7, 0, 0, 12)
-        self.assertEqual(r3.area(), 56)
-        Base._Base__nb_objects = 0
-
-    def test_display_rectangle_4_6(self):
-        """
-        Check the display method
-        """
-
-        capture = io.StringIO()
-        sys.stdout = capture
-        r1 = Rectangle(4, 6)
-        r1.display()
-        out = capture.getvalue()
-        sys.stdout = sys.__stdout__
-        display = "####\n####\n####\n####\n####\n####\n"
-        self.assertEqual(display, out)
-        Base._Base__nb_objects = 0
-
-    def test_display_rectangle_2_2(self):
-        """
-        Check the display method
-        """
-
-        capture = io.StringIO()
-        sys.stdout = capture
-        r1 = Rectangle(2, 2)
-        r1.display()
-        out = capture.getvalue()
-        sys.stdout = sys.__stdout__
-        display = "##\n##\n"
-        self.assertEqual(display, out)
-        Base._Base__nb_objects = 0
-
-    def test_display_rectangle_2_3_2_2(self):
-        """
-        Check the display method
-        """
-
-        capture = io.StringIO()
-        sys.stdout = capture
-        r1 = Rectangle(2, 3, 2, 2)
-        r1.display()
-        out = capture.getvalue()
-        sys.stdout = sys.__stdout__
-        display = "\n\n  ##\n  ##\n  ##\n"
-        self.assertEqual(display, out)
-        Base._Base__nb_objects = 0
-
-    def test_display_rectangle_3_2_1_0(self):
-        """
-        Check the display method
-        """
-
-        capture = io.StringIO()
-        sys.stdout = capture
-        r1 = Rectangle(3, 2, 1, 0)
-        r1.display()
-        out = capture.getvalue()
-        sys.stdout = sys.__stdout__
-        display = " ###\n ###\n"
-        self.assertEqual(display, out)
-        Base._Base__nb_objects = 0
-
-    def test_rectangle_str_1(self):
-        """
-        Check the __str__ method
-        """
-
-        capture = io.StringIO()
-        sys.stdout = capture
-        r1 = Rectangle(4, 6, 2, 1, 12)
-        print(r1)
-        out = capture.getvalue()
-        sys.stdout = sys.__stdout__
-        display = "[Rectangle] (12) 2/1 - 4/6\n"
-        self.assertEqual(display, out)
-        Base._Base__nb_objects = 0
-
-    def test_rectangle_str_2(self):
-        """
-        Check the __str__ method
-        """
-
-        capture = io.StringIO()
-        sys.stdout = capture
-        r1 = Rectangle(5, 5, 1)
-        print(r1)
-        out = capture.getvalue()
-        sys.stdout = sys.__stdout__
-        display = "[Rectangle] (1) 1/0 - 5/5\n"
-        self.assertEqual(display, out)
-        Base._Base__nb_objects = 0
-
-    def test_rectangle_update_args_1(self):
-        """
-        Check the update method with args
-        """
-
-        capture = io.StringIO()
-        sys.stdout = capture
-        r1 = Rectangle(10, 10, 10, 10)
-        r1.update(89)
-        print(r1)
-        out = capture.getvalue()
-        sys.stdout = sys.__stdout__
-        display = "[Rectangle] (89) 10/10 - 10/10\n"
-        self.assertEqual(display, out)
-        Base._Base__nb_objects = 0
-
-    def test_rectangle_update_kwargs_1(self):
-        """
-        Check the update method with kwargs
-        """
-
-        capture = io.StringIO()
-        sys.stdout = capture
-        r1 = Rectangle(10, 10, 10, 10)
-        r1.update(height=1)
-        print(r1)
-        out = capture.getvalue()
-        sys.stdout = sys.__stdout__
-        display = "[Rectangle] (1) 10/10 - 10/1\n"
-        self.assertEqual(display, out)
-        Base._Base__nb_objects = 0
+        with self.assertRaises(ValueError):
+            r3 = Rectangle(10, 2)
+            r3.x = - 10
+            self.g1.x = - 10
+            self.g2.x = - 10
+            self.g3.x = - 10
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

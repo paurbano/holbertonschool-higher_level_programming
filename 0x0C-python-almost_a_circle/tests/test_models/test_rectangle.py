@@ -28,8 +28,8 @@ class TestRectangle(unittest.TestCase):
 
     def test_A(self):
         """Test id"""
-        self.assertEqual(self.g1.id, 51)
-        self.assertEqual(self.g2.id, 52)
+        self.assertEqual(self.g1.id, 10)
+        self.assertEqual(self.g2.id, 11)
         self.assertEqual(self.g3.id, 12)
         """ Test width"""
         self.assertEqual(self.g1.width, 10)
@@ -101,7 +101,7 @@ class TestRectangle(unittest.TestCase):
     def test_04(self):
         """Test 4 for Rectangle"""
         r = Rectangle(20, 4)
-        self.assertEqual(r.id, 11)
+        self.assertEqual(r.id, 1)
         self.assertEqual(r.width, 20)
         self.assertEqual(r.height, 4)
         self.assertEqual(r.x, 0)

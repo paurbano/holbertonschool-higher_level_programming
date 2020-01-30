@@ -263,3 +263,7 @@ class TestBase(unittest.TestCase):
         output = temp_stdout.getvalue()
         self.assertEqual(output, '[Square] (2) 9/1 - 7\n')
         self.assertTrue(type(list_squares_output), list)
+
+
+if __name__ == '__main__':
+    unittest.main()

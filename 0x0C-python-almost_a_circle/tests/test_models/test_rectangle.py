@@ -198,3 +198,7 @@ class TestRectangle(unittest.TestCase):
         display = "[Rectangle] (1) 10/10 - 10/1\n"
         self.assertEqual(display, out)
         Base._Base__nb_objects = 0
+
+
+if __name__ == '__main__':
+    unittest.main()

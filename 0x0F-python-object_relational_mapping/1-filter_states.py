@@ -19,15 +19,13 @@ if __name__ == '__main__':
     '''Create cursor for operate over DB'''
     myCursor = mydb.cursor()
 
-    begin transaction
     '''pass and execute a SQL sentence'''
     myCursor.execute("select * from states \
                      where name like 'N%' order by states.id")
 
     '''retrive records and fill cursor'''
     states = myCursor.fetchall()
-    end transaction
-    
+
     '''Print rows'''
     for state in states:
         print(state)

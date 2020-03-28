@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 Module States
-script that lists all states with a name starting with N (upper N)
+takes in an argument and displays all values in the states
 """
 from sys import argv
 import MySQLdb
@@ -15,11 +15,13 @@ if __name__ == '__main__':
     mydb = MySQLdb.connect(host="localhost",
                            user=MY_USER,
                            passwd=MY_PASSWD,
-                           db=MY_DB)
+                           db=MY_DB,
+                           port=3306)
 
     '''Create cursor for operate over DB'''
     myCursor = mydb.cursor()
-    query = "select * from states where name = '{}'".format(param)
+    query = "select * from states where binary name = '{}' order by states.id asc".
+    format(param)
 
     '''pass and execute a SQL sentence'''
     myCursor.execute(query)

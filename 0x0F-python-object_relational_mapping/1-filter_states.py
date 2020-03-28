@@ -21,8 +21,8 @@ if __name__ == '__main__':
     myCursor = mydb.cursor()
 
     '''pass and execute a SQL sentence'''
-    myCursor.execute("select * from states \
-                     where name like 'N%' order by states.id ASC")
+    myCursor.execute("SELECT * FROM states \
+                     WHERE name like 'N%' ORDER BY id ASC")
 
     '''retrive records and fill cursor'''
     states = myCursor.fetchall()

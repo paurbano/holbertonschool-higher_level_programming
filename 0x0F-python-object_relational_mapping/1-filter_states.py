@@ -14,14 +14,15 @@ if __name__ == '__main__':
     mydb = MySQLdb.connect(host="localhost",
                            user=MY_USER,
                            passwd=MY_PASSWD,
-                           db=MY_DB)
+                           db=MY_DB,
+                           port=3306)
 
     '''Create cursor for operate over DB'''
     myCursor = mydb.cursor()
 
     '''pass and execute a SQL sentence'''
     myCursor.execute("select * from states \
-                     where name like 'N%' order by states.id")
+                     where name like 'N%' order by states.id ASC")
 
     '''retrive records and fill cursor'''
     states = myCursor.fetchall()

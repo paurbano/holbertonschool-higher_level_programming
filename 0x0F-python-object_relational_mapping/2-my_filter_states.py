@@ -20,8 +20,7 @@ if __name__ == '__main__':
 
     '''Create cursor for operate over DB'''
     myCursor = mydb.cursor()
-    query = "select * from states where binary name = '{}' order by states.id asc".
-    format(param)
+    query = "select * from states where binary name = '{}'".format(param)
 
     '''pass and execute a SQL sentence'''
     myCursor.execute(query)

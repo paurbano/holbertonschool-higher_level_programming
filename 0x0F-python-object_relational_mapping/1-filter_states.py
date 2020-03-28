@@ -5,6 +5,8 @@ script that lists all states with a name starting with N (upper N)
 """
 from sys import argv
 import MySQLdb
+
+
 if __name__ == '__main__':
     MY_USER = argv[1]
     MY_PASSWD = argv[2]
@@ -21,8 +23,8 @@ if __name__ == '__main__':
     myCursor = mydb.cursor()
 
     '''pass and execute a SQL sentence'''
-    myCursor.execute("SELECT * FROM states \
-                     WHERE name like 'N%' ORDER BY id ASC")
+    myCursor.execute("SELECT * FROM states\
+                     WHERE name like binary 'N%' ORDER BY id ASC")
 
     '''retrive records and fill cursor'''
     states = myCursor.fetchall()

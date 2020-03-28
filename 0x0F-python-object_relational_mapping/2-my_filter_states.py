@@ -19,11 +19,10 @@ if __name__ == '__main__':
 
     '''Create cursor for operate over DB'''
     myCursor = mydb.cursor()
+    query = "select * from states where name = '{}'".format(param)
 
     '''pass and execute a SQL sentence'''
-    myCursor.execute("select * from states \
-                     where name = %s",(param,))
-
+    myCursor.execute(query)
 
     '''retrive records and fill cursor'''
     states = myCursor.fetchall()

@@ -15,7 +15,8 @@ if __name__ == '__main__':
     mydb = MySQLdb.connect(host="localhost",
                            user=MY_USER,
                            passwd=MY_PASSWD,
-                           db=MY_DB)
+                           db=MY_DB,
+                           port=3306)
 
     '''Create cursor for operate over DB'''
     myCursor = mydb.cursor()
@@ -23,7 +24,7 @@ if __name__ == '__main__':
     '''pass and execute a SQL sentence'''
     '''prevents sql Injection'''
     sql = "select * from states where name = %s"
-    myCursor.execute(sql,(param,))
+    myCursor.execute(sql, (param,))
 
     '''retrive records and fill cursor'''
     states = myCursor.fetchall()

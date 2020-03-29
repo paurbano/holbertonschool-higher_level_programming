@@ -4,11 +4,9 @@
     an instance Base = declarative_base()
 '''
 
-import sys
-import os
 from sqlalchemy import Column,  Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-
+from sqlalchemy.orm import relationship
 # Declare a Mapping: create the base class using the declarative_base()
 Base = declarative_base()
 
@@ -19,6 +17,7 @@ class State(Base):
     __tablename__ = 'states'
     id = Column(Integer, primary_key=True)
     name = Column(String(128), nullable=False)
+    cities = relationship("City")
 
     def __init__(self, name):
         self.name = name

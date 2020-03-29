@@ -17,9 +17,12 @@ if __name__ == "__main__":
     DBSession.bind = engine
     session = DBSession()
 
+    # Query States and its cities
     query = session.query(State).join(City).\
         filter(State.id == City.state_id).all()
-    print(query)
+    
+    # Now print it
+    # every state has a list with its cities
     for state in query:
         print("{}: {}".format(str(state.id), state.name))
         for city in state.cities:

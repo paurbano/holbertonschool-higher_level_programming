@@ -18,14 +18,13 @@ if __name__ == "__main__":
     session = DBSession()
 
     # Query States and its cities
-    result = session.query(State).join(City).\
-        filter(State.id == City.state_id).order_by(State.id, City.id).all()
+    # result = session.query(State).order_by(State.id).all()
 
     # Now print it
     # every state has a list with its cities
-    for state in result:
+    for state in session.query(State).order_by(State.id).all():
         print("{}: {}".format(str(state.id), state.name))
         for city in state.cities:
-            print("    {}: {}".format(str(city.id), city.name))
+            print("\t{}: {}".format(str(city.id), city.name))
 
     session.close()

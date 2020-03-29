@@ -7,18 +7,20 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
-    dbConnector = 'mysql+mysqldb://{}:{}@localhost:3306/{}'
-    engine = create_engine(dbConnector.format(
-        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
-    Base.metadata.create_all(engine)
-    Base.metadata.bind = engine
-    DBSession = sessionmaker(bind=engine)
-    session = DBSession()
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
 
-    # create and query state object
-    state = session.query(State).filter_by(id=2)
-    # state = State.update().where(State.name == 'New Mexico').values(id=2)
-    state.name = 'New Mexico'
-    # commit and close session
+    engine = create_engine(
+        'mysql+mysqldb://{}:{}@localhost:3306/{}'.
+        format(username, password, database),
+        pool_pre_ping=True
+    )
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    update = session.query(State).filter_by(id=2).first()
+    update.name = 'New Mexico'
     session.commit()
     session.close()

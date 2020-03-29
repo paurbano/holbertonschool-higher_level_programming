@@ -5,7 +5,6 @@ import sys
 from model_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.sql.expression import update
 
 if __name__ == "__main__":
     dbConnector = 'mysql+mysqldb://{}:{}@localhost:3306/{}'
@@ -21,6 +20,5 @@ if __name__ == "__main__":
     # state = State.update().where(State.name == 'New Mexico').values(id=2)
     state.name = 'New Mexico'
     # commit and close session
-    session.commit()
     session.commit()
     session.close()

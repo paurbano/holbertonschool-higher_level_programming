@@ -17,7 +17,7 @@ if __name__ == "__main__":
     session = DBSession()
 
     # create state object
-    addState = State("Louisiana")
+    addState = State(name="Louisiana")
     # commit and close session
     session.add(addState)
     session.commit()

@@ -47,7 +47,7 @@ Example
     Route 2
     guillaume@ubuntu:~/0x10$
 
-File: [`1-body.sh`]
+File: [`1-body.sh`](https://github.com/paurbano/holbertonschool-higher_level_programming/blob/master/0x10-python-network_0/1-body.sh)
 
 ## 2. cURL Method
 Write a Bash script that sends a DELETE request to the URL passed as the first argument and displays the body of the response
@@ -59,7 +59,7 @@ Example:
     guillaume@ubuntu:~/0x10$ ./2-delete.sh 0.0.0.0:5000/route_3 ; echo ""
     I'm a DELETE request
     guillaume@ubuntu:~/0x10$
-File: [`2-delete.sh`]
+File: [`2-delete.sh`](https://github.com/paurbano/holbertonschool-higher_level_programming/blob/master/0x10-python-network_0/2-delete.sh)
 
 ## 3. cURL only methods
 Write a Bash script that takes in a URL and displays all HTTP methods the server will accept.
@@ -71,7 +71,7 @@ Example:
     guillaume@ubuntu:~/0x10$ ./3-methods.sh 0.0.0.0:5000/route_4
     OPTIONS, HEAD, PUT
     guillaume@ubuntu:~/0x10$
-File: [`3-methods.sh`]
+File: [`3-methods.sh`](https://github.com/paurbano/holbertonschool-higher_level_programming/blob/master/0x10-python-network_0/3-methods.sh)
 
 ## 4. cURL headers
 Write a Bash script that takes in a URL as an argument, sends a GET request to the URL, and displays the body of the response
@@ -84,7 +84,7 @@ Example:
     guillaume@ubuntu:~/0x10$ ./4-header.sh 0.0.0.0:5000/route_5 ; echo ""
     Hello Holberton School!
     guillaume@ubuntu:~/0x10$
-File: [`4-header.sh`]
+File: [`4-header.sh`](https://github.com/paurbano/holbertonschool-higher_level_programming/blob/master/0x10-python-network_0/4-header.sh)
 
 ## 5. cURL POST parameters
 Write a Bash script that takes in a URL, sends a POST request to the passed URL, and displays the body of the response
@@ -101,7 +101,7 @@ Exmple:
         subject: I will always be here for PLD
     guillaume@ubuntu:~/0x10$
 
-File: [`5-post_params.sh`]
+File: [`5-post_params.sh`](https://github.com/paurbano/holbertonschool-higher_level_programming/blob/master/0x10-python-network_0/5-post_params.sh)
 
 ## 6. Find a peak
 Technical interview preparation:
@@ -118,6 +118,7 @@ Write a function that finds a peak in a list of unsorted integers.
 * 6-peak.txt must contain the complexity of your algorithm: O(log(n)), O(n), O(nlog(n)) or O(n2)
 
 Example:
+
     guillaume@ubuntu:~/0x10$ cat 6-main.py
     #!/usr/bin/python3
     """ Test function find_peak """

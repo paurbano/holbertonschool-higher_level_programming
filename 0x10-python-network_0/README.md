@@ -31,13 +31,15 @@ Example
     guillaume@ubuntu:~/0x10$ ./0-body_size.sh 0.0.0.0:5000
     10
     guillaume@ubuntu:~/0x10$
-File: [`0-body_size.sh`]
+
+File: [`0-body_size.sh`](https://github.com/paurbano/holbertonschool-higher_level_programming/blob/master/0x10-python-network_0/0-body_size.sh)
 
 ## 1. cURL to the end
 Write a Bash script that takes in a URL, sends a GET request to the URL, and displays the body of the response
 
 * Display only body of a 200 status code response
 * You have to use curl
+
 Example
 
     guillaume@ubuntu:~/0x10$ ./1-body.sh 0.0.0.0:5000/route_1 ; echo ""
@@ -50,6 +52,7 @@ File: [`1-body.sh`]
 Write a Bash script that sends a DELETE request to the URL passed as the first argument and displays the body of the response
 
 * You have to use curl
+
 Example:
 
     guillaume@ubuntu:~/0x10$ ./2-delete.sh 0.0.0.0:5000/route_3 ; echo ""
@@ -61,6 +64,7 @@ File: [`2-delete.sh`]
 Write a Bash script that takes in a URL and displays all HTTP methods the server will accept.
 
 * You have to use curl
+
 Example:
 
     guillaume@ubuntu:~/0x10$ ./3-methods.sh 0.0.0.0:5000/route_4
@@ -73,6 +77,7 @@ Write a Bash script that takes in a URL as an argument, sends a GET request to t
 
 * A header variable X-HolbertonSchool-User-Id must be sent with the value 98
 * You have to use curl
+
 Example:
 
     guillaume@ubuntu:~/0x10$ ./4-header.sh 0.0.0.0:5000/route_5 ; echo ""
@@ -86,6 +91,7 @@ Write a Bash script that takes in a URL, sends a POST request to the passed URL,
 * A variable email must be sent with the value hr@holbertonschool.com
 * A variable subject must be sent with the value I will always be here for PLD
 * You have to use curl
+
 Exmple:
 
     guillaume@ubuntu:~/0x10$ ./5-post_params.sh 0.0.0.0:5000/route_6 ; echo ""
@@ -93,6 +99,7 @@ Exmple:
         email: hr@holbertonschool.com
         subject: I will always be here for PLD
     guillaume@ubuntu:~/0x10$
+
 File: [`5-post_params.sh`]
 
 ## 6. Find a peak
@@ -132,4 +139,5 @@ Example:
     guillaume@ubuntu:~/0x10$ wc -l 6-peak.txt 
     2 6-peak.txt
     guillaume@ubuntu:~/0x10$
+
 File: [`6-peak.py`], [`6-peak.txt`]

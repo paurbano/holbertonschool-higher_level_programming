@@ -11,9 +11,9 @@ if __name__ == "__main__":
     from urllib.error import HTTPError
     import sys
     url = sys.argv[1]
-    with urllib.request.urlopen(url) as response:
-        try:
+    try:
+        with urllib.request.urlopen(url) as response:
             answer = response.read()
             print(answer.decode('utf-8'))
-        except HTTPError as e:
-            print('Error code: ', e.code)
+    except HTTPError as e:
+        print('Error code:', e.code)

@@ -38,6 +38,8 @@ Write a class Rectangle that defines a rectangle:
 * Initialize the instance attribute `width` with the value of `w`
 * Initialize the instance attribute `height` with the value of `h`
 
+Example
+
     guillaume@ubuntu:~/0x13$ cat 1-main.js
     #!/usr/bin/node
     const Rectangle = require('./1-rectangle');
